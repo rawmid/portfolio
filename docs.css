@@ -1,0 +1,425 @@
+/* ===================================================================
+   Rawnak Tahmid — Portfolio
+   docs.css — Moonshot Lab documentation landing page
+
+   Shared by every project docs page (docs.html?id=<key>). Reuses the
+   color/spacing/typography tokens from style.css so this always
+   matches the rest of the site's visual identity.
+=================================================================== */
+
+.docs-main {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 56px 32px 140px;
+  display: flex;
+  flex-direction: column;
+}
+
+.docs-content {
+  display: flex;
+  flex-direction: column;
+  gap: 88px;
+}
+
+/* ---------- Back link (reused pattern from project.html) ---------- */
+.back-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13.5px;
+  font-weight: 600;
+  color: var(--text-dim);
+  padding: 8px 4px;
+  transition: color .2s var(--ease);
+}
+.back-link:hover { color: var(--accent-blue); }
+
+/* ---------- Hero ---------- */
+.docs-hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 420px);
+  gap: 48px;
+  align-items: center;
+}
+
+.docs-hero__text {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 18px;
+}
+
+.docs-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 14px;
+  border-radius: var(--radius-pill);
+  border: 1px solid var(--card-border-hover);
+  background: linear-gradient(135deg, rgba(155,123,255,0.12), rgba(110,156,255,0.06));
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--accent-purple);
+}
+
+.docs-hero__title {
+  font-family: var(--font-display);
+  font-size: clamp(32px, 4vw, 46px);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+}
+
+.docs-hero__tagline {
+  font-size: 17px;
+  color: var(--text);
+  font-weight: 500;
+}
+
+.docs-hero__desc {
+  font-size: 14.5px;
+  line-height: 1.7;
+  color: var(--text-dim);
+  max-width: 54ch;
+}
+
+.docs-hero__ctas {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  margin-top: 8px;
+}
+
+.docs-hero__media {
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  gap: 14px;
+  align-items: stretch;
+}
+
+.docs-hero__media-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+/* ---------- Media placeholders ----------
+   Every dashed box in this template marks a spot meant to be filled
+   in with a real screenshot, render, or video clip. Swap the element
+   for an <img>/<video> tag when ready; the dashed style disappears
+   automatically once real content fills the box. */
+.media-placeholder {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 120px;
+  border-radius: var(--radius-md);
+  border: 1.5px dashed var(--card-border-hover);
+  background: repeating-linear-gradient(135deg, rgba(255,255,255,0.015) 0 10px, transparent 10px 20px);
+  color: var(--text-faint);
+  text-align: center;
+  padding: 16px;
+}
+
+.media-placeholder--tall {
+  min-height: 100%;
+}
+
+.media-placeholder__label {
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+
+.media-placeholder--video {
+  aspect-ratio: 16 / 9.5;
+  min-height: 220px;
+}
+
+.media-placeholder__play {
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--bg-soft);
+  border: 1px solid var(--card-border-hover);
+  font-size: 14px;
+  color: var(--text-dim);
+}
+
+.media-placeholder__caption {
+  font-size: 11px;
+  color: var(--text-faint);
+}
+
+/* ---------- Documentation overview cards ---------- */
+.docs-overview__grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 14px;
+}
+
+.docs-overview__card {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 22px 20px;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--card-border);
+  background: var(--card);
+  transition: border-color .25s var(--ease), transform .25s var(--ease), box-shadow .25s var(--ease);
+}
+.docs-overview__card:hover {
+  border-color: var(--card-border-hover);
+  transform: translateY(-3px);
+  box-shadow: 0 12px 28px rgba(0,0,0,0.35);
+}
+
+.docs-overview__icon { font-size: 18px; }
+
+.docs-overview__title {
+  font-family: var(--font-display);
+  font-size: 14.5px;
+  font-weight: 600;
+}
+
+.docs-overview__desc {
+  font-size: 12.5px;
+  line-height: 1.55;
+  color: var(--text-dim);
+}
+
+/* ---------- What is [Project]? ---------- */
+.docs-whatis {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 460px);
+  gap: 48px;
+  align-items: start;
+}
+
+.docs-whatis__copy {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 14px;
+}
+
+.docs-eyebrow {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  color: var(--text-faint);
+}
+
+.docs-whatis__heading {
+  font-family: var(--font-display);
+  font-size: clamp(24px, 3vw, 32px);
+  font-weight: 700;
+  line-height: 1.25;
+  letter-spacing: -0.01em;
+}
+
+.docs-whatis__line { display: block; }
+.docs-whatis__line--highlight {
+  background: var(--accent-gradient);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.docs-whatis__desc {
+  font-size: 14px;
+  line-height: 1.7;
+  color: var(--text-dim);
+}
+
+.docs-checklist {
+  list-style: none;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px 20px;
+  width: 100%;
+  margin-top: 6px;
+}
+
+.docs-checklist__item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  color: var(--text-dim);
+}
+.docs-checklist__item svg { color: var(--accent-blue); flex-shrink: 0; }
+
+.docs-whatis__media {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.docs-thumb-strip {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 10px;
+}
+
+.docs-thumb-strip__item {
+  aspect-ratio: 1 / 1;
+  min-height: 0;
+  border-radius: var(--radius-sm);
+  padding: 6px;
+}
+
+/* ---------- Features ---------- */
+.docs-features__label { margin-bottom: 26px; }
+
+.docs-features__grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+}
+
+.docs-features__card {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 24px 22px;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--card-border);
+  background: var(--card);
+  transition: border-color .25s var(--ease), transform .25s var(--ease);
+}
+.docs-features__card:hover {
+  border-color: var(--card-border-hover);
+  transform: translateY(-3px);
+}
+
+.docs-features__icon {
+  width: 34px;
+  height: 34px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-sm);
+  background: var(--bg-soft);
+  border: 1px solid var(--card-border);
+  font-size: 15px;
+}
+
+.docs-features__title {
+  font-family: var(--font-display);
+  font-size: 14.5px;
+  font-weight: 600;
+}
+
+.docs-features__desc {
+  font-size: 12.5px;
+  line-height: 1.6;
+  color: var(--text-dim);
+}
+
+/* ---------- Bottom CTA ---------- */
+.docs-cta {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 14px;
+  padding: 56px 32px;
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--card-border);
+  background: linear-gradient(135deg, rgba(155,123,255,0.06), rgba(110,156,255,0.03));
+}
+
+.docs-cta__heading {
+  font-family: var(--font-display);
+  font-size: clamp(22px, 3vw, 28px);
+  font-weight: 700;
+}
+
+.docs-cta__desc {
+  color: var(--text-dim);
+  font-size: 14px;
+  max-width: 46ch;
+}
+
+.docs-cta__btn { margin-top: 8px; }
+
+/* ---------- Empty state ---------- */
+.docs-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  gap: 14px;
+  min-height: 50vh;
+  padding: 60px 24px;
+}
+.docs-empty h1 { font-family: var(--font-display); font-size: 26px; }
+.docs-empty p { color: var(--text-dim); font-size: 14px; max-width: 40ch; }
+
+/* ===================================================================
+   Responsive — mirrors the breakpoints already used across the site
+=================================================================== */
+
+/* Ultrawide: cap width instead of stretching content thin */
+@media (min-width: 1700px) {
+  .docs-main { max-width: 1320px; }
+}
+
+/* Small laptop / large tablet */
+@media (max-width: 1180px) {
+  .docs-main { padding: 48px 24px 120px; }
+  .docs-content { gap: 72px; }
+  .docs-features__grid { grid-template-columns: repeat(3, 1fr); }
+}
+
+/* Tablet: stack the two-column sections */
+@media (max-width: 980px) {
+  .docs-hero { grid-template-columns: 1fr; gap: 32px; }
+  .docs-hero__media { order: -1; }
+
+  .docs-overview__grid { grid-template-columns: repeat(3, 1fr); }
+
+  .docs-whatis { grid-template-columns: 1fr; gap: 32px; }
+  .docs-thumb-strip { grid-template-columns: repeat(5, 1fr); }
+
+  .docs-features__grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+/* Mobile landscape / large phone */
+@media (max-width: 700px) {
+  .docs-main { padding: 36px 18px 90px; }
+  .docs-content { gap: 56px; }
+
+  .docs-hero__media { grid-template-columns: 1fr 1fr; }
+  .docs-hero__ctas { width: 100%; }
+  .docs-hero__ctas .btn { flex: 1 1 auto; }
+
+  .docs-overview__grid { grid-template-columns: repeat(2, 1fr); }
+
+  .docs-checklist { grid-template-columns: 1fr; }
+  .docs-thumb-strip { grid-template-columns: repeat(3, 1fr); }
+
+  .docs-features__grid { grid-template-columns: 1fr 1fr; }
+
+  .docs-cta { padding: 40px 22px; }
+}
+
+/* Phone */
+@media (max-width: 460px) {
+  .docs-hero__media { grid-template-columns: 1fr; }
+  .docs-hero__media-stack { flex-direction: row; }
+
+  .docs-overview__grid { grid-template-columns: 1fr; }
+  .docs-features__grid { grid-template-columns: 1fr; }
+  .docs-thumb-strip { grid-template-columns: repeat(3, 1fr); }
+}
