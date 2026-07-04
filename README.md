@@ -73,4 +73,4 @@ and visit `http://localhost:8000`.
 
 ---
 
-⭐ If you find something here useful or interesting, feel free to star the repo!
+If you find something here useful or interesting, feel free to star the repo!
