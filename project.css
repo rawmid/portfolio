@@ -458,20 +458,6 @@
   background: #0a0b10;
   flex-shrink: 0;
 }
-.src-modal__dots {
-  display: flex;
-  gap: 6px;
-  flex-shrink: 0;
-}
-.src-modal__dot {
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
-  display: inline-block;
-}
-.src-modal__dot--red { background: #ff5f57; }
-.src-modal__dot--yellow { background: #febc2e; }
-.src-modal__dot--green { background: #28c840; }
 
 .src-modal__title {
   font-family: var(--font-display);
