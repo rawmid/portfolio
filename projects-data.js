@@ -236,10 +236,7 @@ const PROJECTS = {
                 }
             }
           }
-      printf("\n\n\n\n\n\n\n\n");
     return 0;
-}
-
 }
 `
         },
@@ -317,19 +314,204 @@ behindNotes: [
   sourceCode: {
     files: [
       {
-        name: "simulator.c",
+        name: "main.c",
         language: "c",
         content:
 `#include <stdio.h>
 #include <math.h>
+#include <windows.h>
 
-// TODO: replace with your actual simulator.c content
-double calculateRange(double velocity, double angleRad) {
-    return (velocity * velocity * sin(2 * angleRad)) / 9.81;
-}
+#ifndef M_PI
+    #define M_PI 3.14159265358979323846
+#endif
 
-int main(void) {
-    printf("Missile Simulator placeholder\\n");
+
+// Define DELAY_TIME in milliseconds
+#define DELAY_TIME 20
+
+// Define a macro to delay each character automatically
+#ifdef _WIN32
+    #define DELAYED_PRINT(fmt, ...) do { \
+        char buffer[1024]; \
+        snprintf(buffer, sizeof(buffer), fmt, ##__VA_ARGS__); \
+        for (char *ptr = buffer; *ptr; ptr++) { \
+            printf("%c", *ptr); \
+            fflush(stdout); \
+            Sleep(DELAY_TIME); \
+        } \
+    } while(0)
+#else
+    #define DELAYED_PRINT(fmt, ...) do { \
+        char buffer[1024]; \
+        snprintf(buffer, sizeof(buffer), fmt, ##__VA_ARGS__); \
+        for (char *ptr = buffer; *ptr; ptr++) { \
+            printf("%c", *ptr); \
+            fflush(stdout); \
+            usleep(DELAY_TIME * 500); \
+        } \
+    } while(0)
+#endif
+
+
+int main() {
+    int user_willing = 1;
+  
+    // Explanation
+    DELAYED_PRINT("\n\nWelcome\n\nHere, we will calculate the ground hitting location of an object when\nit is launched with a certain amount of force. So, let's begin with giving\nsome information below.\n\n\n");
+
+    //main programme structure
+    while (user_willing == 1) {
+        
+        // User Input
+
+        float  mass;
+        DELAYED_PRINT("Mass Of the Object  :");
+        scanf("%f", &mass); // entering the mass
+        //ensuring accuracy
+        while (mass < 0) {
+            DELAYED_PRINT("Please enter a valid mass:");
+            scanf("%f", &mass);
+        }
+
+        float  force;
+        DELAYED_PRINT("Implemented force   :");
+        scanf("%f", &force); // entering the force
+        //ensuring accuracy
+        while (force < 0) {
+            DELAYED_PRINT("Please enter a valid amount of force:");
+            scanf("%f", &force);
+        }
+
+        float  force_given_on;
+        DELAYED_PRINT("Distance of giving force  :");
+        scanf("%f", &force_given_on); // Assume the force was applied over 10 meters
+        //ensuring accuracy
+        while (force_given_on < 0) {
+            DELAYED_PRINT("Please enter valid info:");
+            scanf("%f", &force_given_on);
+        }
+        
+        float  angle;
+        DELAYED_PRINT("Projectile angle     :");
+        scanf("%f", &angle); // entering the angle
+
+        //ensuring accuracy
+        while (angle < 0 || angle > 90) {
+            DELAYED_PRINT("Please enter a valid projectile angle angle:");
+            scanf("%f", &angle);
+        }
+
+        //calculating velocity
+        float  initial_velocity = sqrt((2 * force * force_given_on) / mass); // kinematic equation v^2 = u^2 + 2as, here u = 0
+        //processing angle
+        float  angle_radians = angle * (M_PI / 180.0); // Convert degrees to radians
+
+
+
+        //calculating the whole scenerio
+        float  gravity = 9.8;
+        float  distance = (initial_velocity * initial_velocity * sin(2 * angle_radians)) / gravity;
+
+        //Animation
+
+        //elements
+        char ball = '*';
+        char ground = '|';
+
+        //graph reaching top
+        float x;                 
+        float y;
+        int spaces;
+        float radian=360;
+        int peak_height;
+
+        //calculating the area
+        int area = 0;
+        int height;
+
+        //calculating different angles
+        float multiplyer = tan(angle_radians);
+
+        //calculating peak height
+        peak_height = 2 * 180 / tan(angle_radians);
+
+        printf("Object launched ... ...\n");
+        Sleep(400);
+
+        //animaiton
+        for (int  x = 0;  x < peak_height; x+=1) {
+                
+            //calculating y
+             radian = x * M_PI / 180;
+            y = sin(multiplyer * radian) * 100;
+
+            //interpreting y to spaces
+            spaces = (int)(y);
+            height = spaces;
+            area += spaces;
+
+            //animation reaching the top
+            if (spaces > -1) {
+                printf("%c", ground);
+                for (int i = 0; i < spaces; i++) {
+                        printf(" ");
+                } 
+                
+                printf("%c", ball);
+                printf("%d\n", height);
+                //delay time 
+                Sleep(spaces / 4);                
+            }
+
+        }
+
+        
+        //resetting the info
+        mass = 0;
+        force = 0;
+        force_given_on = 0;
+        angle_radians = 0;
+        angle = 0;
+        
+        
+        //Showing the result
+
+                //delay 
+                DELAYED_PRINT("\n\nShowing the results in\n");
+                DELAYED_PRINT("3\n");
+                Sleep(1000);
+                DELAYED_PRINT("2\n");
+                Sleep(1000);
+                DELAYED_PRINT("1\n");
+                Sleep(600);
+
+
+        Sleep(650);
+        DELAYED_PRINT("\n\nThe object travelled %.2f meters\n\n\n", distance);
+
+        Sleep(350);
+        DELAYED_PRINT("Thank You for trusting us\n\n");
+        Sleep(200);
+
+        //loop
+        DELAYED_PRINT("Would you want to continue? ('1' for yes, '0' for no)\nAns: ");
+        scanf("%d", &user_willing);
+
+
+        //ensuring accuaracy
+        while (user_willing !=0 && user_willing !=1)
+        {
+          DELAYED_PRINT("Pls enter a valid answer\n");
+           
+          DELAYED_PRINT("Would you want to continue? ('1' for yes, '0' for no)\nAns: ");
+          scanf("%d", &user_willing);
+        }
+        if (user_willing == 0) {
+            DELAYED_PRINT("Thank You\n");
+        }
+
+    }
+
     return 0;
 }
 `
@@ -338,15 +520,76 @@ int main(void) {
         name: "animation.c",
         language: "c",
         content:
-`#include <stdio.h>
-#include <windows.h>
+`#include<stdio.h>
+#include<math.h>
+#include<windows.h>
 
-// TODO: replace with your actual animation.c content
-void playLaunchAnimation(int frames) {
-    for (int i = 0; i < frames; i++) {
-        printf(".");
-        Sleep(100);
+#ifndef M_PI
+    #define M_PI 3.14159265358979323846
+#endif
+
+int main() {
+    //info 
+    float angle;
+    
+    //elements
+    char ball = '*';
+    char ground = '|';
+
+
+    //graph reaching top
+    float x;         
+    float y;
+    int spaces;
+    float radian=360;
+    int peak_height;
+
+
+    //calculating the area
+    int height;
+
+    //user input
+    printf("Enter projectile angle:");
+    scanf("%f", &angle);
+
+    while (angle < 0 || angle > 90) {
+        printf("Please enter a valid projectile angle angle:");
+        scanf("%f", &angle);
     }
+
+
+    //calculating different angles
+    float angle_radians = angle * M_PI / 180;
+    float multiplyer = tan(angle_radians);
+
+    //calculating peak height
+    peak_height = 2 * 180 / tan(angle_radians);
+
+    //animaiton
+    for (int  x = 0;  x < peak_height; x+=1) {
+        //calculating y
+        radian = x * M_PI / 180;
+        y = sin(multiplyer * radian) * 100;
+
+        //interpreting y to spaces
+        spaces = (int)(y);
+        height = spaces;
+
+        //animation reaching the top
+        if (spaces > -1) {
+            printf("%c", ground);
+            for (int i = 0; i < spaces; i++) {
+                printf(" ");
+            } 
+        
+            printf("%c", ball);
+            printf("%d\n", height);
+            //delay time 
+            Sleep(spaces / 4);        
+        }
+    }
+
+    return 0;
 }
 `
       }
@@ -448,9 +691,19 @@ void playLaunchAnimation(int frames) {
 `{
   "manifest_version": 3,
   "name": "Study Anchor",
-  "version": "1.0.0",
-  "description": "TODO: replace with your actual manifest.json content",
-  "background": { "service_worker": "background.js" }
+  "version": "1.0",
+  "description": "Forces return to ChatGPT during study mode",
+  "permissions": ["tabs", "storage", "scripting"],
+  "host_permissions": ["<all_urls>"],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "action": {
+    "default_popup": "popup.html"
+  },
+  "icons": {
+    "128": "icon.png"
+  }
 }
 `
       },
@@ -458,28 +711,281 @@ void playLaunchAnimation(int frames) {
         name: "background.js",
         language: "javascript",
         content:
-`// TODO: replace with your actual background.js content
-let studyMode = false;
-const restrictedSites = ["example.com"];
+`const CHATGPT_DOMAIN = "chat.openai.com";
 
-chrome.tabs.onUpdated.addListener((tabId, changeInfo) => {
-  if (!studyMode || !changeInfo.url) return;
-  if (restrictedSites.some((site) => changeInfo.url.includes(site))) {
-    chrome.tabs.remove(tabId);
-  }
+const BAD_DOMAINS = [
+  "reddit.com", "youtube.com", "instagram.com", "discord.com",
+  "twitter.com", "facebook.com", "x.com", "tiktok.com",
+  "snapchat.com", "twitch.tv", "linkedin.com",
+  "pinterest.com", "threads.net", "tracker.gg"
+];
+
+const warnedTabs = new Set();
+
+async function checkForDistraction() {
+  const { mode } = await chrome.storage.local.get("mode");
+  if (mode !== "study") return;
+
+  const [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
+  if (!tab?.url || !tab.url.startsWith("http")) return;
+
+  const hostname = new URL(tab.url).hostname.toLowerCase();
+  if (hostname.includes(CHATGPT_DOMAIN)) return;
+  if (!BAD_DOMAINS.some(d => hostname.includes(d))) return;
+  if (warnedTabs.has(tab.id)) return;
+
+  warnedTabs.add(tab.id);
+
+  await chrome.scripting.executeScript({
+    target: { tabId: tab.id },
+    func: showWarningOverlay
+  });
+
+  setTimeout(async () => {
+    try {
+      const tabs = await chrome.tabs.query({ currentWindow: true });
+      let gptTab = tabs.find(t =>
+        t.url && new URL(t.url).hostname.includes(CHATGPT_DOMAIN)
+      );
+
+      if (!gptTab) {
+        await chrome.tabs.create({
+          url: `https://${CHATGPT_DOMAIN}`,
+          active: true
+        });
+      } else {
+        await chrome.tabs.update(gptTab.id, { active: true });
+      }
+
+      await chrome.tabs.remove(tab.id);
+    } catch (e) {
+      console.error("Redirect failed:", e);
+    }
+
+    warnedTabs.delete(tab.id);
+  }, 3000);
+}
+
+function showWarningOverlay() {
+  if (document.getElementById("study-anchor-warning")) return;
+
+  const overlay = document.createElement("div");
+  overlay.id = "study-anchor-warning";
+  overlay.style.cssText = `
+    position: fixed;
+    inset: 0;
+    backdrop-filter: blur(18px);
+    background: rgba(0,0,0,0.6);
+    z-index: 999999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: system-ui, sans-serif;
+  `;
+
+  const modal = document.createElement("div");
+  modal.style.cssText = `
+    width: 420px;
+    max-width: 90%;
+    padding: 36px 40px;
+    border-radius: 32px;
+    background: radial-gradient(circle at top, #101a2b, #070b14);
+    box-shadow:
+      0 0 80px rgba(0,0,0,0.9),
+      inset 0 0 1px rgba(255,255,255,0.18);
+    text-align: center;
+    color: white;
+  `;
+
+  modal.innerHTML = `
+    <!-- ICON (EXACT STYLE) -->
+    <div style="
+      width: 64px;
+      height: 64px;
+      margin: 0 auto 20px;
+      border-radius: 16px;
+      background: linear-gradient(180deg, #0f1c2f, #0a1322);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow:
+        inset 0 0 10px rgba(255,255,255,0.08),
+        0 0 20px rgba(80,140,255,0.35);
+    ">
+      <svg width="28" height="28" viewBox="0 0 24 24" fill="none">
+        <path d="M9 7L4 12L9 17" stroke="white" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M4 12H14C17.3137 12 20 14.6863 20 18" stroke="white" stroke-width="2.4" stroke-linecap="round"/>
+      </svg>
+    </div>
+
+    <h2 style="margin:0 0 10px;font-weight:600;">
+      Action Required
+    </h2>
+
+    <p style="opacity:0.9;line-height:1.45;margin-bottom:24px;">
+      Please return to ChatGPT<br>
+      to continue your session.
+    </p>
+
+    <div id="countdown" style="
+      display: inline-block;
+      padding: 12px 34px;
+      border-radius: 18px;
+      background: linear-gradient(180deg, #5fa8ff, #2f6bff);
+      font-weight: 600;
+      box-shadow: 0 0 30px rgba(80,140,255,0.75);
+    ">
+      Go Back (3)
+    </div>
+  `;
+
+  overlay.appendChild(modal);
+  document.body.appendChild(overlay);
+  document.body.style.overflow = "hidden";
+
+  let time = 3;
+  const btn = modal.querySelector("#countdown");
+
+  const timer = setInterval(() => {
+    time--;
+    if (time <= 0) clearInterval(timer);
+    else btn.textContent = `Go Back (${time})`;
+  }, 1000);
+}
+
+
+
+chrome.tabs.onActivated.addListener(checkForDistraction);
+chrome.tabs.onUpdated.addListener((_, info) => {
+  if (info.status === "complete") checkForDistraction();
 });
 `
       },
       {
-        name: "popup.js",
+        name: "popup.html",
+        language: "html",
+        content:
+`<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    html, body {
+      width: 220px;
+      height: 320px;
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+
+      /* IMPORTANT: no transparency */
+      background: linear-gradient(180deg, #191e25, #0b0712);
+    }
+
+    body {
+      font-family: system-ui, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .card {
+      width: 100%;
+      height: 100%;
+      border-radius: 0; 
+      background: linear-gradient(circle at top, #181e28, #050910);
+      box-shadow: inset 0 0 40px rgba(0,0,0,0.9);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      color: white;
+    }
+
+
+    .label {
+      font-size: 20px;
+      font-weight: 600;
+      letter-spacing: 0.4px;
+      opacity: 0.95;
+    }
+
+    .switch {
+      position: relative;
+      width: 56px;
+      height: 150px;
+      margin: 20px 0;
+      border-radius: 28px;
+      background: linear-gradient(180deg, #04070d, #070f1e);
+      box-shadow:
+        inset 0 0 18px rgba(0,0,0,0.9),
+        inset 0 0 2px rgba(255,255,255,0.05);
+      cursor: pointer;
+    }
+
+    .knob {
+      position: absolute;
+      left: 6px;
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: linear-gradient(180deg, #182221, #091412);
+      box-shadow:
+        0 0 10px rgba(54, 54, 54, 0.35);
+      transition: top 0.35s cubic-bezier(.4,0,.2,1);
+    }
+
+    .study .knob {
+      top: 8px;
+      background: linear-gradient(180deg, #47e38a, #1fae66);
+      box-shadow: 0 0 25px rgba(80,255,160,0.55);
+    }
+
+    .casual .knob {
+      top: 98px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="card">
+    <div class="label">Study</div>
+
+    <div id="switch" class="switch casual">
+      <div class="knob"></div>
+    </div>
+
+    <div class="label">Casual</div>
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+</html>
+`
+      },
+
+      {
+        name: "popupt.js",
         language: "javascript",
         content:
-`// TODO: replace with your actual popup.js content
-document.getElementById("toggle").addEventListener("click", () => {
-  console.log("Study mode toggled");
+`const switchEl = document.getElementById("switch");
+
+function setMode(mode) {
+  switchEl.classList.remove("study", "casual");
+  switchEl.classList.add(mode);
+  chrome.storage.local.set({ mode });
+}
+
+chrome.storage.local.get("mode", ({ mode }) => {
+  setMode(mode || "casual");
+});
+
+switchEl.addEventListener("click", () => {
+  chrome.storage.local.get("mode", ({ mode }) => {
+    setMode(mode === "study" ? "casual" : "study");
+  });
 });
 `
-      }
+      },
     ]
   },
 
