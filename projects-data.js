@@ -86,7 +86,7 @@ behindNotes: [
 
 "easefolio": {
     "id": "easefolio",
-    "icon": "&#128187;",
+    "icon": "&#10070;",
     "title": "EaseFolio",
     "tagline": "A static, data-driven portfolio site you can visually edit and deploy to GitHub Pages",
     "description": "EaseFolio is a static, data-driven portfolio site built with HTML, CSS, and JavaScript. It features an optional Admin Mode that allows visually editing the entire site—including content, themes, colors, fonts, layout, images, and projects—with a live preview. Changes are published by securely committing updates directly to the repository.",
@@ -362,7 +362,7 @@ behindNotes: [
   sourceCode: null,
 
   stack: [
-    { name: "html", colorClass: "accent--orange" },
+    { name: "html", colorClass: "accent--white" },
     { name: "css", colorClass: "accent--blue" },
     { name: "js", colorClass: "accent--orange" }
   ],
