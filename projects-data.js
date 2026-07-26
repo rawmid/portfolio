@@ -95,16 +95,14 @@ behindNotes: [
     "status": "Completed",
     "projectType": "Static Web Application",
     "sourceUrl": "https://github.com/rawmid/ra_project",
-    "liveUrl": null,
-    "sourceCode": null,
+    "liveUrl": "https://rawmid.github.io/easefolio/",
+    "sourceCode": "https://github.com/rawmid/easefolio",
     "stack": [
-      { "name": "html5", "colorClass": "accent--blue" },
-      { "name": "css3", "colorClass": "accent--purple" },
+      { "name": "html", "colorClass": "accent--blue" },
       { "name": "javascript", "colorClass": "accent--yellow" },
-      { "name": "nodejs", "colorClass": "accent--green" }
     ],
     "techStack": [
-      { "name": "HTML5, CSS3, Vanilla JS", "subtitle": "Frontend rendering", "color": "#e34c26" },
+      { "name": "HTML, CSS, Vanilla JS", "subtitle": "Frontend rendering", "color": "#e34c26" },
       { "name": "Tailwind CSS", "subtitle": "Utility-first styling", "color": "#38bdf8" },
       { "name": "Node.js + Express", "subtitle": "Admin backend", "color": "#339933" },
       { "name": "GitHub OAuth + JWT", "subtitle": "Authentication", "color": "#24292e" }
