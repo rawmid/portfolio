@@ -105,7 +105,7 @@ behindNotes: [
       { "name": "HTML, CSS, Vanilla JS", "subtitle": "Frontend rendering", "color": "#e34c26" },
       { "name": "Tailwind CSS", "subtitle": "Utility-first styling", "color": "#38bdf8" },
       { "name": "Node.js + Express", "subtitle": "Admin backend", "color": "#339933" },
-      { "name": "GitHub OAuth + JWT", "subtitle": "Authentication", "color": "#24292e" }
+      { "name": "GitHub OAuth + JWT", "subtitle": "Authentication", "color": "#24292e" }  
     ],
     "keyFeatures": [
       "Dynamic rendering of all sections (Hero, About, Skills, Projects, Contact ) from a central data.json file using client-side JavaScript",
