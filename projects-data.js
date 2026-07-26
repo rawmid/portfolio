@@ -99,7 +99,7 @@ behindNotes: [
     "sourceCode": "https://github.com/rawmid/easefolio",
     "stack": [
       { "name": "html", "colorClass": "accent--blue" },
-      { "name": "javascript", "colorClass": "accent--yellow" },
+      { "name": "JS", "colorClass": "accent--orange" },
     ],
     "techStack": [
       { "name": "HTML, CSS, Vanilla JS", "subtitle": "Frontend rendering", "color": "#e34c26" },
@@ -270,7 +270,7 @@ behindNotes: [
 
   stack: [
     { name: "HTML", colorClass: "accent--white" },
-    { name: "JavaScript", colorClass: "accent--orange" }
+    { name: "JS", colorClass: "accent--orange" }
   ],
 
   techStack: [
@@ -364,7 +364,7 @@ behindNotes: [
   stack: [
     { name: "html", colorClass: "accent--orange" },
     { name: "css", colorClass: "accent--blue" },
-    { name: "js", colorClass: "accent--yellow" }
+    { name: "js", colorClass: "accent--orange" }
   ],
 
   techStack: [
