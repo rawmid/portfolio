@@ -84,6 +84,89 @@ behindNotes: [
 ]
   },
 
+"easefolio": {
+    "id": "easefolio",
+    "icon": "&#128187;",
+    "title": "EaseFolio",
+    "tagline": "A static, data-driven portfolio site you can visually edit and deploy to GitHub Pages",
+    "description": "EaseFolio is a static, data-driven portfolio site built with HTML, CSS, and JavaScript. It features an optional Admin Mode that allows visually editing the entire site—including content, themes, colors, fonts, layout, images, and projects—with a live preview. Changes are published by securely committing updates directly to the repository.",
+    "category": "Portfolio Website",
+    "date": "January 2024",
+    "status": "Completed",
+    "projectType": "Static Web Application",
+    "sourceUrl": "https://github.com/rawmid/ra_project",
+    "liveUrl": null,
+    "sourceCode": null,
+    "stack": [
+      { "name": "html5", "colorClass": "accent--blue" },
+      { "name": "css3", "colorClass": "accent--purple" },
+      { "name": "javascript", "colorClass": "accent--yellow" },
+      { "name": "nodejs", "colorClass": "accent--green" }
+    ],
+    "techStack": [
+      { "name": "HTML5, CSS3, Vanilla JS", "subtitle": "Frontend rendering", "color": "#e34c26" },
+      { "name": "Tailwind CSS", "subtitle": "Utility-first styling", "color": "#38bdf8" },
+      { "name": "Node.js + Express", "subtitle": "Admin backend", "color": "#339933" },
+      { "name": "GitHub OAuth + JWT", "subtitle": "Authentication", "color": "#24292e" }
+    ],
+    "keyFeatures": [
+      "Dynamic rendering of all sections (Hero, About, Skills, Projects, Contact ) from a central data.json file using client-side JavaScript",
+      "Modern glassmorphism UI with animated background particles, 3D hover effects, and responsive Tailwind CSS layout",
+      "Admin Mode with secure GitHub OAuth authentication for visually editing all site content, themes, colors, fonts, and images",
+      "Live preview iframe rendering the site in real-time alongside the visual editor",
+      "Draft workflow keeping changes in memory until explicitly published, preventing accidental saves",
+      "Secure publishing via a separate Node.js backend that commits updated data directly to the repository using a fine-grained Personal Access Token"
+    ],
+    "pseudocode": [
+      "BEGIN",
+      "  Load data.json",
+      "  Render site sections into DOM using client-side JavaScript",
+      "",
+      "  IF Admin Mode is triggered",
+      "    Authenticate user via GitHub OAuth",
+      "    Load visual editor panel",
+      "    WHILE user is editing",
+      "      Apply changes to in-memory draft",
+      "      Update live preview iframe",
+      "    END WHILE",
+      "    IF user clicks Publish",
+      "      Send updated data to backend server",
+      "      Backend commits changes to repository using PAT",
+      "    END IF",
+      "  END IF",
+      "",
+      "  Display the rendered portfolio site",
+      "END"
+    ],
+    "howItWorks": [
+      {
+        "title": "Data-Driven Rendering",
+        "desc": "The entire site content is stored in data.json and dynamically rendered into the DOM by script.js."
+      },
+      {
+        "title": "Visual Editor (Admin Mode)",
+        "desc": "An admin panel allows editing all content visually, with a live preview rendered in an iframe."
+      },
+      {
+        "title": "Secure Authentication",
+        "desc": "GitHub OAuth verifies admin identity against a server-side allow-list, issuing an httpOnly session cookie."
+      },
+      {
+        "title": "Publish & Deploy",
+        "desc": "Published changes are committed to the repository via a Node.js backend, updating the live site on GitHub Pages."
+      }
+    ],
+    "behindTitle": "Behind the Architecture",
+    "behindDesc": "The portfolio separates concerns into a static frontend driven entirely by data.json and an optional Express backend for secure admin operations. The frontend renders content dynamically without any build step, while the backend handles GitHub OAuth and repository commits to keep everything deployable directly to GitHub Pages.",
+    "behindNotes": [
+      "Load data.json and populate DOM sections",
+      "Render hero, about, skills, projects, and contact from JSON data",
+      "Authenticate admin via GitHub OAuth flow",
+      "Visual editor applies changes to in-memory draft",
+      "Publish commits updated data.json to the repository"
+    ]
+},
+
 "missile-simulator": {
   id: "missile-simulator",
   icon: "&#10070;",
