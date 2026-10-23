@@ -94,7 +94,7 @@ behindNotes: [
     "date": "January 2024",
     "status": "Completed",
     "projectType": "Static Web Application",
-    "sourceUrl": "https://github.com/rawmid/ra_project",
+    "sourceUrl": "https://github.com/rawmid/easefolio",
     "liveUrl": "https://rawmid.github.io/easefolio/",
     "sourceCode": "https://github.com/rawmid/easefolio",
     "stack": [
